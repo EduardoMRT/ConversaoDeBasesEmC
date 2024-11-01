@@ -1,0 +1,8 @@
+Criar em C/C++ um programa para conversão de bases
+ Converter:
+○ Decimal para todas as bases
+○ Binário para todas as bases
+○ Octal para todas as bases
+○ Hexadecimal para todas as bases
+
+(Faça um menu para facilitar a execução)

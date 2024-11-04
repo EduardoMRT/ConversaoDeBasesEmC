@@ -41,6 +41,7 @@ void _logger(int nivel_alert, char *erro) {
     if(fp) {
         fprintf(fp, "%s", loggerToString);
         printf("\nO erro foi adicionado no arquivo de log");
+        printf("\n%s", erro);
         fclose(fp);
     }else {
         perror("\nNao foi possivel obter acesso ao arquivo de log");

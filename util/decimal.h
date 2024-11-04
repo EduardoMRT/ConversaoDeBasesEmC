@@ -7,7 +7,7 @@
 
 #endif //DECIMAL_H
 
-inline void Decimal(){
+void Decimal(){
 
 }
 

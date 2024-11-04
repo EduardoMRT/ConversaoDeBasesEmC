@@ -15,7 +15,7 @@ int main(void) {
     idioma();
     inicio();
 
-    const int opcMenu = menu(0, 4);
+    const int opcMenu = menu(0, 5);
 
     if(!redirecionaPosMenu(opcMenu)) {
         _logger(1, "Opção do menu é inválida!");

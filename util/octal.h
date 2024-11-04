@@ -7,6 +7,6 @@
 
 #endif //OCTAL_H
 
-inline void Octal(){
+void Octal(){
 
 }

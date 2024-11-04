@@ -17,12 +17,12 @@
 #endif
 
 
-inline void sair(){
+void sair(){
     printf("\n Você escolheu sair.");
     exit(0);
 }
 
-inline void limpaTela(){
+void limpaTela(){
     #ifdef _WIN32
         system("cls");
     #else

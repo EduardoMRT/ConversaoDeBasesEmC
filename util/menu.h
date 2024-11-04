@@ -8,16 +8,18 @@
 #endif //MENU_H
 #include<stdio.h>
 
-inline int menu(int comecarEm, int irAte) {
+int menu(const int comecarEm, const int irAte) {
     int opc = 0;
 
-    char menu[10][20] = {'Decimal', 'Binario', 'Octal', 'Hexadecimal', 'Ajuda', 'Sair'};
+    char menu[10][20] = {"Decimal", "Binario", "Octal", "Hexadecimal", "Ajuda", "Sair"};
     int count = 1;
 
     for(int i = comecarEm; i <= irAte; i++) {
         printf("\n (%d) %s", count, menu[i]);
         count++;
     }
+
+    printf("\n");
 
     scanf("%d", &opc);
     return opc;

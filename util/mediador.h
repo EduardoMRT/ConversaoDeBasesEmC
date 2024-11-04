@@ -9,7 +9,7 @@
 
 #include<stdio.h>
 
-inline char* recebeValor(int opcMenu){
+char* recebeValor(int opcMenu){
 
     char permissoesHexadecimal[17] = {'A', 'B', 'C', 'D', 'E', 'F', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
     char permissoesBinario[2] = {'0', '1'};
@@ -19,14 +19,16 @@ inline char* recebeValor(int opcMenu){
     char valor[255];
     char tipo[30];
 
+    getchar();
     printf("\nDigite o valor que deseja converter: ");
     scanf("%254[^\n]", valor);
     printf("Converter para: ");
+    menu(0, 3);
 
-    return "";
+    return "aaaa";
 }
 
-inline bool garanteQueNaoSejaAMesmaOpcao(const int opcMenu, const int opcConverte) {
+bool garanteQueNaoSejaAMesmaOpcao(const int opcMenu, const int opcConverte) {
 
     if(opcMenu == opcConverte) {
         printf("\nVocê não pode converter para esse tipo, pois o valor digitado já é");

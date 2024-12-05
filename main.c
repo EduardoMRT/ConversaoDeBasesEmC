@@ -24,6 +24,7 @@ int main(void) {
 
     recebeValor(opcMenu);
 
+    printf("\nAperte enter para encerrar o programa.");
     getchar(); getchar();
     return 0;
 }
@@ -35,6 +36,7 @@ void idioma(void) {
 
 void inicio(void) {
     printf("\nSISTEMA DE CONVERSÃO DE BASES");
+    printf("\nDigite a Base que você irá enviar: ");
 }
 
 

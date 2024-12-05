@@ -3,4 +3,5 @@ project(ConversaoDeBasesEmC C)
 
 set(CMAKE_C_STANDARD 23)
 
-add_executable(ConversaoDeBasesEmC main.c)
+add_executable(ConversaoDeBasesEmC main.c
+        structs/pessoa.h)

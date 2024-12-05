@@ -8,13 +8,20 @@
 #endif //REDIRECIONA_H
 
 #include "utilitarios.h";
+#include "ajuda.h";
 
-bool redirecionaPosMenu(int opc){
+int redirecionaPosMenu(int opc){
     for(int i = 1; i <= 6; i++) {
         if(i == opc) {
-            return true;
+            if(i == 5) {
+                ajuda();
+                printf("\nAperte enter para continuar...");
+                getchar(); getchar();
+                return 2;
+            }
+            return 1;
         }
     }
     limpaTela();
-    return false;
+    return 0;
 }

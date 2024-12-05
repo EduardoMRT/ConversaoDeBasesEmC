@@ -17,9 +17,13 @@ int main(void) {
 
     const int opcMenu = menu(0, 5);
 
-    if(!redirecionaPosMenu(opcMenu)) {
+    const int retorno = redirecionaPosMenu(opcMenu);
+    if(retorno == 0) {
         _logger(1, "Opção do menu é inválida!");
-        inicio();
+        main();
+    }else if(retorno == 2) {
+        limpaTela();
+        main();
     }
 
     recebeValor(opcMenu);

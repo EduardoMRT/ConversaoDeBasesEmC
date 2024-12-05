@@ -15,7 +15,7 @@ int menu(const int comecarEm, const int irAte) {
     int count = 1;
 
     for(int i = comecarEm; i <= irAte; i++) {
-        printf("\n (%d) %s", count, menu[i]);
+        printf("\n \t(%d) %s", count, menu[i]);
         count++;
     }
 

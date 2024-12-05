@@ -22,39 +22,55 @@ int binarioParaDecimal(const char *bin) {
     return decimal;
 }
 
-void binarioParaOctal(const char *bin) {
+char* binarioParaOctal(const char *bin) {
     int decimal = binarioParaDecimal(bin);
-    char octal[100];
+    char *octal = (char *)malloc(100 * sizeof(char));
     int i = 0;
 
-    while (decimal != 0) {
-        octal[i++] = (decimal % 8) + '0';
-        decimal /= 8;
+    if (decimal == 0) {
+        octal[i++] = '0';
+    } else {
+        while (decimal != 0) {
+            octal[i++] = (decimal % 8) + '0';
+            decimal /= 8;
+        }
     }
     octal[i] = '\0';
 
-    for (int j = i - 1; j >= 0; j--) {
-        printf("%c", octal[j]);
+    for (int j = 0; j < i / 2; j++) {
+        char temp = octal[j];
+        octal[j] = octal[i - j - 1];
+        octal[i - j - 1] = temp;
     }
+
+    return octal;
 }
 
-void binarioParaHexadecimal(const char *bin) {
+char* binarioParaHexadecimal(const char *bin) {
     int decimal = binarioParaDecimal(bin);
-    char hex[100];
+    char *hex = (char *)malloc(100 * sizeof(char));
     int i = 0;
 
-    while (decimal != 0) {
-        int temp = decimal % 16;
-        if (temp < 10) {
-            hex[i++] = temp + '0';
-        } else {
-            hex[i++] = temp - 10 + 'A';
+    if (decimal == 0) {
+        hex[i++] = '0';
+    } else {
+        while (decimal != 0) {
+            int temp = decimal % 16;
+            if (temp < 10) {
+                hex[i++] = temp + '0';
+            } else {
+                hex[i++] = temp - 10 + 'A';
+            }
+            decimal /= 16;
         }
-        decimal /= 16;
     }
     hex[i] = '\0';
 
-    for (int j = i - 1; j >= 0; j--) {
-        printf("%c", hex[j]);
+    for (int j = 0; j < i / 2; j++) {
+        char temp = hex[j];
+        hex[j] = hex[i - j - 1];
+        hex[i - j - 1] = temp;
     }
+
+    return hex;
 }

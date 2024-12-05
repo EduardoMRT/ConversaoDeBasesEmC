@@ -51,18 +51,36 @@ void recebeValor(int opcMenu){
 }
 
 bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
-    if(opcMenu == 1) {
+    if(opcConverte == 2) {
         int binario = 0;
-        if(opcConverte == 2) {
+        if(opcMenu == 1) {
             binario = decimalParaBinario(atoi(valor));
         }
-        if(opcConverte == 3) {
+        else if(opcMenu == 3) {
             binario = octalParaBinario(valor);
         }
-        if(opcConverte == 4) {
+        else if(opcMenu == 4) {
            binario = hexadecimalParaBinario(valor);
         }
         printf("\nValor em binário: %d", binario);
+    }
+
+    else if(opcConverte == 1) {
+        int decimal;
+        char decimalConvertido[128];
+        if(opcMenu == 2) {
+           printf("\nValor em binário: %d", binarioParaDecimal(valor));
+        }
+        else if(opcMenu == 3) {
+            decimal = octalParaBinario(valor);
+            sprintf(decimalConvertido, "%d", decimal);
+            printf("\nValor em decimal: %s", binarioParaOctal(decimalConvertido));
+        }
+        else if(opcMenu == 4) {
+            decimal = hexadecimalParaBinario(valor);
+            sprintf(decimalConvertido, "%d", decimal);
+            printf("\nValor em decimal: %s", binarioParaHexadecimal(decimalConvertido));
+        }
     }
 }
 

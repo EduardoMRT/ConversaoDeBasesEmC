@@ -52,10 +52,17 @@ void recebeValor(int opcMenu){
 
 bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
     if(opcMenu == 1) {
+        int binario = 0;
         if(opcConverte == 2) {
-            int binario = decimalParaBinario(atoi(valor));
-            printf("Valor em binário: %d", binario);
+            binario = decimalParaBinario(atoi(valor));
         }
+        if(opcConverte == 3) {
+            binario = octalParaBinario(valor);
+        }
+        if(opcConverte == 4) {
+           binario = hexadecimalParaBinario(valor);
+        }
+        printf("\nValor em binário: %d", binario);
     }
 }
 

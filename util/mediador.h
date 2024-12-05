@@ -51,25 +51,12 @@ void recebeValor(int opcMenu){
 }
 
 bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
-    if(opcConverte == 2) {
-        int binario = 0;
-        if(opcMenu == 1) {
-            binario = decimalParaBinario(atoi(valor));
-        }
-        else if(opcMenu == 3) {
-            binario = octalParaBinario(valor);
-        }
-        else if(opcMenu == 4) {
-           binario = hexadecimalParaBinario(valor);
-        }
-        printf("\nValor em binário: %d", binario);
-    }
 
-    else if(opcConverte == 1) {
+     if(opcConverte == 1) {
         int decimal;
         char decimalConvertido[128];
         if(opcMenu == 2) {
-           printf("\nValor em decimal: %d", binarioParaDecimal(valor));
+            printf("\nValor em decimal: %d", binarioParaDecimal(valor));
         }
         else if(opcMenu == 3) {
             decimal = octalParaBinario(valor);
@@ -83,6 +70,20 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
         }
     }
 
+    else if(opcConverte == 2) {
+        int binario = 0;
+        if(opcMenu == 1) {
+            binario = decimalParaBinario(atoi(valor));
+        }
+        else if(opcMenu == 3) {
+            binario = octalParaBinario(valor);
+        }
+        else if(opcMenu == 4) {
+           binario = hexadecimalParaBinario(valor);
+        }
+        printf("\nValor em binário: %d", binario);
+    }
+
     else if(opcConverte == 3) {
         char binarioConvertido[128];
         int binario;
@@ -92,12 +93,30 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
             printf("\nValor em octal: %s", binarioParaOctal(binarioConvertido));
         }
         else if(opcMenu == 2) {
-            printf("\nValor em binário: %d", octalParaBinario(valor));
+            printf("\nValor em binário: %s", binarioParaOctal(valor));
         }
         else if(opcMenu == 4) {
             binario = hexadecimalParaBinario(valor);
             sprintf(binarioConvertido, "%d", binario);
             printf("\nValor em hexadecimal: %s", binarioParaOctal(binarioConvertido));
+        }
+    }
+
+    else if(opcConverte == 4) {
+        char binarioConvertido[128];
+        int binario;
+        if(opcMenu == 1) {
+            binario = decimalParaBinario(atoi(valor));
+            sprintf(binarioConvertido, "%d", binario);
+            printf("\nValor em Hexadecimal: %s", binarioParaHexadecimal(binarioConvertido));
+        }
+        else if(opcMenu == 2) {
+            printf("\nValor em Hexadecimal: %s", binarioParaHexadecimal(valor));
+        }
+        else if(opcMenu == 3) {
+            binario = octalParaBinario(valor);
+            sprintf(binarioConvertido, "%d", binario);
+            printf("\nValor em Hexadecimal: %s", binarioParaHexadecimal(valor));
         }
     }
 }

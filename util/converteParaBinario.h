@@ -12,36 +12,31 @@
 #include <stdlib.h>
 #include <math.h>
 
-void decimalParaBinario(int decimal) {
-    char binario[100];
-    int i = 0;
+int decimalParaBinario(int decimal) {
+    int binario = 0, pos = 1;
 
     while (decimal != 0) {
-        binario[i++] = (decimal % 2) + '0';
+        binario += (decimal % 2) * pos;
         decimal /= 2;
+        pos *= 10;
     }
-    binario[i] = '\0';
 
-    for (int j = i - 1; j >= 0; j--) {
-        printf("%c", binario[j]);
-    }
+    return binario;
 }
 
-void octalParaBinario(const char *octal) {
-    int decimal = 0, base = 1;
-    int len = strlen(octal);
+int octalParaBinario(const char *octal) {
+    int decimal = 0, base = 1, len = strlen(octal);
 
     for (int i = len - 1; i >= 0; i--) {
         decimal += (octal[i] - '0') * base;
         base *= 8;
     }
 
-    decimalParaBinario(decimal);
+    return decimalParaBinario(decimal);
 }
 
-void hexadecimalParaBinario(const char *hex) {
-    int decimal = 0, base = 1;
-    int len = strlen(hex);
+int hexadecimalParaBinario(const char *hex) {
+    int decimal = 0, base = 1, len = strlen(hex);
 
     for (int i = len - 1; i >= 0; i--) {
         char ch = hex[i];
@@ -55,5 +50,5 @@ void hexadecimalParaBinario(const char *hex) {
         base *= 16;
     }
 
-    decimalParaBinario(decimal);
+    return decimalParaBinario(decimal);
 }

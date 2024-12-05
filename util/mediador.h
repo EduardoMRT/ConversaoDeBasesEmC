@@ -8,17 +8,20 @@
 #endif //MEDIADOR_H
 
 #include<stdio.h>
+#include "converteParaBinario.h"
+#include "converteBinParaBase.h"
 
 bool permitido(char c, const char *permitidos);
 bool permissoes(const int opcMenu, char *valor);
 bool garanteQueNaoSejaAMesmaOpcao(const int opcMenu, const int opcConverte);
+bool gerenciaConversao(int opcMenu, int opcConverte, char* valor);
 
 char permissoesHexadecimal[17] = {'A', 'B', 'C', 'D', 'E', 'F', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 char permissoesBinario[2] = {'0', '1'};
 char permissoesOctal;
 char permissoesDecimal[11] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-char* recebeValor(int opcMenu){
+void recebeValor(int opcMenu){
 
     char valor[255];
     char tipo[30];
@@ -34,6 +37,7 @@ char* recebeValor(int opcMenu){
     if(garanteQueNaoSejaAMesmaOpcao(opcMenu, opcConverte)) {
         if(permissoes(opcMenu, valor)) {
             printf("\nConversão permitida");
+            gerenciaConversao(opcMenu, opcConverte, valor);
         }else {
             printf("\n Conversão não permitida! O valor digitado não pertence a base");
             _logger(1, "O valor digitado não pertence a base");
@@ -44,8 +48,15 @@ char* recebeValor(int opcMenu){
         exit(EXIT_FAILURE);
     }
 
+}
 
-    return "aaaa";
+bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
+    if(opcMenu == 1) {
+        if(opcConverte == 2) {
+            int binario = decimalParaBinario(atoi(valor));
+            printf("Valor em binário: %d", binario);
+        }
+    }
 }
 
 bool garanteQueNaoSejaAMesmaOpcao(const int opcMenu, const int opcConverte) {

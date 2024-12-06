@@ -6,16 +6,12 @@
 #include "logger/logger.h"
 #include "util/mediador.h"
 
-#include "util/enviaemail.h"
-
 //Inicio de funções
 void idioma(void);
 void inicio(void);
 
 
 int main(void) {
-
-
     idioma();
     inicio();
 

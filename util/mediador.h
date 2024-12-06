@@ -10,6 +10,7 @@
 #include<stdio.h>
 #include "converteParaBinario.h"
 #include "converteBinParaBase.h"
+#include <stdbool.h>
 
 bool permitido(char c, const char *permitidos);
 bool permissoes(const int opcMenu, char *valor);

@@ -10,7 +10,6 @@
 void idioma(void);
 void inicio(void);
 
-
 int main(void) {
     idioma();
     inicio();

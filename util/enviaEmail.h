@@ -8,8 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <stdio.h>
-#include <stdlib.h>
 
 char* lerArquivo(const char *nomeArquivo) {
     FILE *arquivo = fopen(nomeArquivo, "r");
@@ -36,7 +34,7 @@ char* lerArquivo(const char *nomeArquivo) {
     return conteudo;
 }
 
-void enviaEmail() {
+void enviaEmail(const char *destinatario, const char *assunto) {
     const char *nomeArquivo = "email.txt";
     char *conteudo = lerArquivo(nomeArquivo);
 
@@ -45,15 +43,16 @@ void enviaEmail() {
         return;
     }
 
-    char comando[1024];
+    char comando[2048];
     snprintf(comando, sizeof(comando),
              "curl --url 'smtp://smtp.gmail.com:587' "
              "--ssl-reqd "
              "--mail-from 'desenvolvimentostestes@gmail.com' "
-             "--mail-rcpt 'edukstestes@gmail.com' "
+             "--mail-rcpt '%s' "
              "--user 'desenvolvimentostestes@gmail.com:senha' "
+             "--header 'Subject: %s' "
              "--upload-file %s",
-             nomeArquivo);
+             destinatario, assunto, nomeArquivo);
 
     int resultado = system(comando);
     if (resultado == 0) {
@@ -64,6 +63,7 @@ void enviaEmail() {
 
     free(conteudo);
 }
+
 
 void escreveNoArquivo(const char *conteudo) {
     const char *nomeArquivo = "email.txt";

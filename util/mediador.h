@@ -90,7 +90,7 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
         strcat(mensagem, " convertido para: ");
         strcat(mensagem, binarioConvertido);
 
-        envia_email("eduksoficial@gmail.com", "Conversão de Bases em C", mensagem);
+        envia_email("teste@gmail.com", "Conversão de Bases em C", mensagem);
     }
 
     else if(opcConverte == 3) {

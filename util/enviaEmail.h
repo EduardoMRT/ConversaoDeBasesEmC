@@ -16,12 +16,16 @@ void envia_email(const char *email_destinatario, const char *assunto, const char
         return;
     }
 
+    fprintf(temp_file, "Content-Type: text/plain; charset=UTF-8\n");
+
     fprintf(temp_file, "From: desenvolvimentostestes@gmail.com\n");
     fprintf(temp_file, "To: %s\n", email_destinatario);
     fprintf(temp_file, "Subject: %s\n", assunto);
     fprintf(temp_file, "\n");
     fprintf(temp_file, "%s\n", mensagem);
     fclose(temp_file);
+
+    system("chcp 65001");
 
     char cmd[2048];
     snprintf(cmd, sizeof(cmd),

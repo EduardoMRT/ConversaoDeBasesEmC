@@ -10,6 +10,7 @@
 #include<stdio.h>
 #include "converteParaBinario.h"
 #include "converteBinParaBase.h"
+#include "enviaEmail.h"
 
 bool permitido(char c, const char *permitidos);
 bool permissoes(const int opcMenu, char *valor);
@@ -82,6 +83,14 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
            binario = hexadecimalParaBinario(valor);
         }
         printf("\nValor em binário: %d", binario);
+        char binarioConvertido[128], mensagem[248];
+        sprintf(binarioConvertido, "%d", binario);
+        strcat(mensagem, "Prezado(a) sr(a). Eduardo, é com muito prazer que lhe informo o resultado de suas conversões: \n");
+        strcat(mensagem, valor);
+        strcat(mensagem, " convertido para: ");
+        strcat(mensagem, binarioConvertido);
+
+        envia_email("eduksoficial@gmail.com", "Conversão de Bases em C", mensagem);
     }
 
     else if(opcConverte == 3) {

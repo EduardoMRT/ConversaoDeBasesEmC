@@ -5,8 +5,6 @@
 #ifndef MEDIADOR_H
 #define MEDIADOR_H
 
-#endif //MEDIADOR_H
-
 #include<stdio.h>
 #include "converteParaBinario.h"
 #include "converteBinParaBase.h"
@@ -16,6 +14,7 @@ bool permitido(char c, const char *permitidos);
 bool permissoes(const int opcMenu, char *valor);
 bool garanteQueNaoSejaAMesmaOpcao(const int opcMenu, const int opcConverte);
 bool gerenciaConversao(int opcMenu, int opcConverte, char* valor);
+void chamaEmail(const char* valor, const char* valorConvertido);
 
 char permissoesHexadecimal[17] = {'A', 'B', 'C', 'D', 'E', 'F', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 char permissoesBinario[2] = {'0', '1'};
@@ -85,12 +84,7 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
         printf("\nValor em binário: %d", binario);
         char binarioConvertido[128], mensagem[248];
         sprintf(binarioConvertido, "%d", binario);
-        strcat(mensagem, "Prezado(a) sr(a). Eduardo, é com muito prazer que lhe informo o resultado de suas conversões: \n");
-        strcat(mensagem, valor);
-        strcat(mensagem, " convertido para: ");
-        strcat(mensagem, binarioConvertido);
-
-        envia_email("teste@gmail.com", "Conversão de Bases em C", mensagem);
+        chamaEmail(valor, binarioConvertido);
     }
 
     else if(opcConverte == 3) {
@@ -190,4 +184,17 @@ bool permitido(char c, const char *permitidos) {
     return false;
 }
 
+void chamaEmail(const char* valor, const char* valorConvertido) {
+    char mensagem[500];
+    strcat(mensagem, "Prezado(a) sr(a).");
+    strcat(mensagem, retornaNomePessoa());
+    strcat(mensagem, ", com muito prazer lhe informo o resultado de suas conversoes: \n");
+    strcat(mensagem, valor);
+    strcat(mensagem, " convertido para: ");
+    strcat(mensagem, valorConvertido);
+    strcat(mensagem, "\n\n\n Desenvolvido por: Eduardo M.R. Teixeira");
 
+    envia_email(retornaEmailPessoa(), "Conversão de Bases em C", mensagem);
+}
+
+#endif //MEDIADOR_H

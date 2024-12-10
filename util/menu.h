@@ -63,10 +63,12 @@ void perguntaCadastro(void) {
 
         Pessoa pessoa;
         limpaTela();
+        getchar();
         printf("\nDigite o seu nome: ");
-        scanf("%s", &pessoa.nome);
+        scanf("%[^\n]", &pessoa.nome);
+        getchar();
         printf("\nDigite o seu email: ");
-        scanf("%s", &pessoa.email);
+        scanf("%[^\n]", &pessoa.email);
 
         FILE *arquivo = fopen("../arquivos/dadosPessoa.txt", "w");
         if(arquivo != NULL) {

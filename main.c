@@ -5,6 +5,7 @@
 #include "util/redireciona.h"
 #include "logger/logger.h"
 #include "util/mediador.h"
+#include "structs/pessoa.h"
 
 //Inicio de funções
 void idioma(void);
@@ -14,6 +15,9 @@ void inicio(void);
 int main(void) {
     idioma();
     perguntaCadastro();
+
+    printf("\nNome da pessoa: %s", retornaNomePessoa());
+
     inicio();
 
 

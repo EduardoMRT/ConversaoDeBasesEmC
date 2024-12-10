@@ -5,8 +5,6 @@
 #ifndef REDIRECIONA_H
 #define REDIRECIONA_H
 
-#endif //REDIRECIONA_H
-
 #include "utilitarios.h"
 #include "ajuda.h"
 
@@ -18,6 +16,8 @@ int redirecionaPosMenu(int opc){
                 printf("\nAperte enter para continuar...");
                 getchar(); getchar();
                 return 2;
+            }else if(i == 6) {
+                exit(1);
             }
             return 1;
         }
@@ -25,3 +25,6 @@ int redirecionaPosMenu(int opc){
     limpaTela();
     return 0;
 }
+
+#endif //REDIRECIONA_H
+

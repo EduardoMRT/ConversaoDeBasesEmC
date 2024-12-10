@@ -5,8 +5,6 @@
 #ifndef CONVERTEPARABINARIO_H
 #define CONVERTEPARABINARIO_H
 
-#endif //CONVERTEPARABINARIO_H
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -52,3 +50,6 @@ int hexadecimalParaBinario(const char *hex) {
 
     return decimalParaBinario(decimal);
 }
+
+#endif //CONVERTEPARABINARIO_H
+

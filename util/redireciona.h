@@ -7,8 +7,8 @@
 
 #endif //REDIRECIONA_H
 
-#include "utilitarios.h";
-#include "ajuda.h";
+#include "utilitarios.h"
+#include "ajuda.h"
 
 int redirecionaPosMenu(int opc){
     for(int i = 1; i <= 6; i++) {

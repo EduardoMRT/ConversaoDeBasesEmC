@@ -13,7 +13,9 @@ void inicio(void);
 
 int main(void) {
     idioma();
+    perguntaCadastro();
     inicio();
+
 
     const int opcMenu = menu(0, 5);
 

@@ -9,8 +9,6 @@
 #include <string.h>
 #include <time.h>
 
-#endif //LOGGER_H
-
 typedef struct{
     int nivel_alert;
     char *erro;
@@ -47,3 +45,8 @@ void _logger(int nivel_alert, char *erro) {
         perror("\nNao foi possivel obter acesso ao arquivo de log");
     }
 }
+
+#endif //LOGGER_H
+
+
+

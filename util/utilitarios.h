@@ -5,8 +5,6 @@
 #ifndef UTILITARIOS_H
 #define UTILITARIOS_H
 
-#endif //UTILITARIOS_H
-
 #include<stdlib.h>
 #include<stdio.h>
 
@@ -23,9 +21,12 @@ void sair(){
 }
 
 void limpaTela(){
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear");
-    #endif
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
+
+#endif //UTILITARIOS_H
+

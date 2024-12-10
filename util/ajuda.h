@@ -4,8 +4,6 @@
 
 #ifndef AJUDA_H
 #define AJUDA_H
-#endif //AJUDA_H
-
 
 void ajuda(){
     limpaTela();
@@ -23,3 +21,7 @@ void ajuda(){
 
 
 }
+
+#endif //AJUDA_H
+
+

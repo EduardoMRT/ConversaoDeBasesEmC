@@ -9,6 +9,7 @@
 #include "converteParaBinario.h"
 #include "converteBinParaBase.h"
 #include "enviaEmail.h"
+#include "utilitarios.h"
 
 bool permitido(char c, const char *permitidos);
 bool permissoes(const int opcMenu, char *valor);
@@ -58,25 +59,25 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
         char baseEnvio[20];
         char baseSaida[20];
 
-         strcat(baseSaida, "Decimal");
+         strcat(baseSaida, " (Decimal) ");
 
         if(opcMenu == 2) {
             printf("\nValor em decimal: %d", binarioParaDecimal(valor));
-            strcat(baseEnvio, "Binario");
+            strcat(baseEnvio, " (Binario) ");
         }
         else if(opcMenu == 3) {
             decimal = octalParaBinario(valor);
             sprintf(decimalConvertido, "%d", decimal);
             printf("\nValor em decimal: %s", binarioParaOctal(decimalConvertido));
-            strcat(baseEnvio, "Octal");
+            strcat(baseEnvio, " (Octal) ");
         }
         else if(opcMenu == 4) {
             decimal = hexadecimalParaBinario(valor);
             sprintf(decimalConvertido, "%d", decimal);
             printf("\nValor em decimal: %s", binarioParaHexadecimal(decimalConvertido));
-            strcat(baseEnvio, "Hexadecimal");
+            strcat(baseEnvio, " (Hexadecimal) ");
         }
-         chamaEmail(valor, decimalConvertido, );
+         chamaEmail(valor, decimalConvertido, baseEnvio, baseSaida);
     }
 
     else if(opcConverte == 2) {
@@ -84,25 +85,25 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
         char baseEnvio[20];
         char baseSaida[20];
 
-        strcat(baseSaida, "Binario");
+        strcat(baseSaida, " (Binario) ");
 
 
         if(opcMenu == 1) {
             binario = decimalParaBinario(atoi(valor));
-            strcat(baseEnvio, "Decimal");
+            strcat(baseEnvio, " (Decimal) ");
         }
         else if(opcMenu == 3) {
             binario = octalParaBinario(valor);
-            strcat(baseEnvio, "Octal");
+            strcat(baseEnvio, " (Octal) ");
         }
         else if(opcMenu == 4) {
            binario = hexadecimalParaBinario(valor);
-            strcat(baseEnvio, "Hexadecimal");
+            strcat(baseEnvio, " (Hexadecimal) ");
         }
         printf("\nValor em binário: %d", binario);
         char binarioConvertido[128], mensagem[248];
         sprintf(binarioConvertido, "%d", binario);
-        chamaEmail(valor, binarioConvertido);
+        chamaEmail(valor, binarioConvertido, baseEnvio, baseSaida);
     }
 
     else if(opcConverte == 3) {
@@ -112,27 +113,27 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
         char baseEnvio[20];
         char baseSaida[20];
 
-        strcat(baseSaida, "Octal");
+        strcat(baseSaida, " (Octal) ");
         if(opcMenu == 1) {
             binario = decimalParaBinario(atoi(valor));
             sprintf(binarioConvertido, "%d", binario);
             printf("\nValor em octal: %s", binarioParaOctal(binarioConvertido));
             strcat(octalConvertido, binarioParaOctal(binarioConvertido));
-            strcat(baseEnvio, "Decimal");
+            strcat(baseEnvio, " (Decimal) ");
         }
         else if(opcMenu == 2) {
             printf("\nValor em octal: %s", binarioParaOctal(valor));
             strcat(octalConvertido, binarioParaOctal(valor));
-            strcat(baseEnvio, "Binario");
+            strcat(baseEnvio, " (Binario) ");
         }
         else if(opcMenu == 4) {
             binario = hexadecimalParaBinario(valor);
             sprintf(binarioConvertido, "%d", binario);
             printf("\nValor em octal: %s", binarioParaOctal(binarioConvertido));
             strcat(octalConvertido, binarioParaOctal(binarioConvertido));
-            strcat(baseEnvio, "Hexadecimal");
+            strcat(baseEnvio, " (Hexadecimal) ");
         }
-        chamaEmail(valor, octalConvertido);
+        chamaEmail(valor, octalConvertido, baseEnvio, baseSaida);
     }
 
     else if(opcConverte == 4) {
@@ -142,25 +143,25 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
         char baseEnvio[20];
         char baseSaida[20];
 
-        strcat(baseSaida, "Hexadecimal");
+        strcat(baseSaida, " (Hexadecimal) ");
         if(opcMenu == 1) {
             binario = decimalParaBinario(atoi(valor));
             sprintf(binarioConvertido, "%d", binario);
             printf("\nValor em Hexadecimal: %s", binarioParaHexadecimal(binarioConvertido));
             strcat(hexadecimalConvertido, binarioParaHexadecimal(binarioConvertido));
-            strcat(baseEnvio, "Decimal");
+            strcat(baseEnvio, " (Decimal) ");
         }
         else if(opcMenu == 2) {
             printf("\nValor em Hexadecimal: %s", binarioParaHexadecimal(valor));
             strcat(hexadecimalConvertido, binarioParaHexadecimal(valor));
-            strcat(baseEnvio, "Binario");
+            strcat(baseEnvio, " (Binario) ");
         }
         else if(opcMenu == 3) {
             binario = octalParaBinario(valor);
             sprintf(binarioConvertido, "%d", binario);
             printf("\nValor em Hexadecimal: %s", binarioParaHexadecimal(valor));
             strcat(hexadecimalConvertido, binarioParaHexadecimal(valor));
-            strcat(baseEnvio, "Octal");
+            strcat(baseEnvio, " (Octal) ");
         }
         chamaEmail(valor, hexadecimalConvertido, baseEnvio, baseSaida);
     }
@@ -227,20 +228,23 @@ bool permitido(char c, const char *permitidos) {
 }
 
 void chamaEmail(const char* valor, const char* valorConvertido, const char* baseEnvio, const char* baseSaida) {
-
     int opc;
     printf("\nDeseja enviar o resultado no seu e-mail? \n\t(1)SIM \n\t(2)NÃO\n");
     scanf("%d", &opc);
 
     if(opc == 1) {
         char mensagem[500];
+        memset(mensagem, '\0', 499);
         strcat(mensagem, "Prezado(a) sr(a).");
         strcat(mensagem, retornaNomePessoa());
         strcat(mensagem, ", com muito prazer lhe informo o resultado de suas conversoes: \n");
+        strcat(mensagem, baseEnvio);
         strcat(mensagem, valor);
         strcat(mensagem, " convertido para: ");
+        strcat(mensagem, baseSaida);
         strcat(mensagem, valorConvertido);
-        strcat(mensagem, "\n\n\n Desenvolvido por: Eduardo M.R. Teixeira");
+        strcat(mensagem, "\n\n\nDesenvolvido por: Eduardo M.R. Teixeira");
+        removeCaracteresEspeciais(mensagem);
 
         envia_email(retornaEmailPessoa(), "Conversão de Bases em C", mensagem);
     }else {

@@ -45,6 +45,7 @@ void idioma(void) {
 }
 
 void inicio(void) {
+    limpaTela();
     printf("\nSISTEMA DE CONVERSÃO DE BASES");
     printf("\nDigite a Base que você irá enviar: ");
 }

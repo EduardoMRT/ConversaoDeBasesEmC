@@ -20,6 +20,28 @@ void sair(){
     exit(0);
 }
 
+void removeCaracteresEspeciais(char *string) {
+    char *leitura = string;
+    char *escrita = string;
+
+    while (*leitura) {
+        if (isalnum((unsigned char)*leitura) || *leitura == ' ' || *leitura == ':' || *leitura == '.' ||
+            *leitura == '(' || *leitura == ')' || *leitura == '\n') {
+
+
+            if (*leitura == '0' && (!isdigit((unsigned char)*(leitura - 1)) && !isdigit((unsigned char)*(leitura + 1)))) {
+                leitura++;
+                continue;
+            }
+
+            *escrita = *leitura;
+            escrita++;
+            }
+        leitura++;
+    }
+    *escrita = '\0';
+}
+
 void limpaTela(){
 #ifdef _WIN32
     system("cls");

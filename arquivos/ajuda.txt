@@ -1,1 +1,20 @@
-Informações sobre o sistema
+Informações sobre o sistema:
+O Sistema foi desenvolvido em C99, seguindo as especificações do trabalho.
+Esse sistema foi criado e planejado para atender os requisitos da disciplina de
+Introdução a Tecnologia da Informação.
+O criador não autoriza o uso da chave de e-mail, nem do comando cURL ou quaisquer
+a ele relacionados.
+
+Funcionamento:
+O usuário, após escolher digitar ou não suas informações (nome, email) deverá inserir
+a base do valor que ele irá querer converter, exemplo ABC -> Hexadecimal -> 123 -> Decimal.
+Após isso, ele deverá escolher a base de conversão, ou seja, para qual base ele deseja
+converter o valor enviado. Por exemplo:
+Hexadecimal -> ABC -> Decimal -> 2748
+E por fim, ele poderá escolher enviar ou não ao seu email previamente cadastrado o resultado da
+conversão.
+
+Caso deseje autorização para uso do sistema, ou tenha alguma dúvida, contatar:
+edukstestes@gmail.com
+
+Eduardo M.R. Teixeira, todos os direitos reservados.

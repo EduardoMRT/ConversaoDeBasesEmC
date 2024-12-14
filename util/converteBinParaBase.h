@@ -5,18 +5,36 @@
 #ifndef CONVERTEBINPARABASE_H
 #define CONVERTEBINPARABASE_H
 
-#endif //CONVERTEBINPARABASE_H
-
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 
+int isValidBinary(const char *bin) {
+    for (int i = 0; bin[i] != '\0'; i++) {
+        if (bin[i] != '0' && bin[i] != '1') {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void reverseString(char *str) {
+    int len = strlen(str);
+    for (int i = 0; i < len / 2; i++) {
+        char temp = str[i];
+        str[i] = str[len - i - 1];
+        str[len - i - 1] = temp;
+    }
+}
+
 int binarioParaDecimal(const char *bin) {
+    if (!isValidBinary(bin)) return -1;
+
     int decimal = 0, len = strlen(bin);
 
     for (int i = 0; i < len; i++) {
         if (bin[i] == '1') {
-            decimal += pow(2, len - 1 - i);
+            decimal += (1 << (len - 1 - i)); // Bit shift
         }
     }
     return decimal;
@@ -24,7 +42,10 @@ int binarioParaDecimal(const char *bin) {
 
 char* binarioParaOctal(const char *bin) {
     int decimal = binarioParaDecimal(bin);
-    char *octal = (char *)malloc(100 * sizeof(char));
+    if (decimal == -1) return NULL;
+
+    int size = (strlen(bin) / 3) + 2;
+    char *octal = (char *)malloc(size * sizeof(char));
     int i = 0;
 
     if (decimal == 0) {
@@ -36,19 +57,16 @@ char* binarioParaOctal(const char *bin) {
         }
     }
     octal[i] = '\0';
-
-    for (int j = 0; j < i / 2; j++) {
-        char temp = octal[j];
-        octal[j] = octal[i - j - 1];
-        octal[i - j - 1] = temp;
-    }
-
+    reverseString(octal);
     return octal;
 }
 
 char* binarioParaHexadecimal(const char *bin) {
     int decimal = binarioParaDecimal(bin);
-    char *hex = (char *)malloc(100 * sizeof(char));
+    if (decimal == -1) return NULL;
+
+    int size = (strlen(bin) / 4) + 2;
+    char *hex = (char *)malloc(size * sizeof(char));
     int i = 0;
 
     if (decimal == 0) {
@@ -56,21 +74,14 @@ char* binarioParaHexadecimal(const char *bin) {
     } else {
         while (decimal != 0) {
             int temp = decimal % 16;
-            if (temp < 10) {
-                hex[i++] = temp + '0';
-            } else {
-                hex[i++] = temp - 10 + 'A';
-            }
+            hex[i++] = (temp < 10) ? temp + '0' : temp - 10 + 'A';
             decimal /= 16;
         }
     }
     hex[i] = '\0';
-
-    for (int j = 0; j < i / 2; j++) {
-        char temp = hex[j];
-        hex[j] = hex[i - j - 1];
-        hex[i - j - 1] = temp;
-    }
-
+    reverseString(hex);
     return hex;
 }
+
+#endif //CONVERTEBINPARABASE_H
+

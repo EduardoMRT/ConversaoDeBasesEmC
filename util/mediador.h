@@ -19,7 +19,7 @@ void chamaEmail(const char* valor, const char* valorConvertido, const char* base
 
 char permissoesHexadecimal[17] = {'A', 'B', 'C', 'D', 'E', 'F', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
 char permissoesBinario[2] = {'0', '1'};
-char permissoesOctal[9] = {'0', '1', '2', '3', '4', '5', '6', '7', '8'};
+char permissoesOctal[9] = {'0', '1', '2', '3', '4', '5', '6', '7'};
 char permissoesDecimal[11] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 void recebeValor(int opcMenu){
@@ -66,14 +66,12 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
             strcat(baseEnvio, " (Binario) ");
         }
         else if(opcMenu == 3) {
-            decimal = octalParaBinario(valor);
-            sprintf(decimalConvertido, "%d", decimal);
+            sprintf(decimalConvertido, "%s", octalParaBinario(valor));
             printf("\nValor em decimal: %s", binarioParaOctal(decimalConvertido));
             strcat(baseEnvio, " (Octal) ");
         }
         else if(opcMenu == 4) {
-            decimal = hexadecimalParaBinario(valor);
-            sprintf(decimalConvertido, "%d", decimal);
+            sprintf(decimalConvertido, "%s", hexadecimalParaBinario(valor));
             printf("\nValor em decimal: %s", binarioParaHexadecimal(decimalConvertido));
             strcat(baseEnvio, " (Hexadecimal) ");
         }
@@ -89,18 +87,18 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
 
 
         if(opcMenu == 1) {
-            binario = decimalParaBinario(atoi(valor));
+            printf("\nValor em binário: %s", decimalParaBinario(atoi(valor)));
             strcat(baseEnvio, " (Decimal) ");
         }
         else if(opcMenu == 3) {
-            binario = octalParaBinario(valor);
+            printf("\nValor em binário: %s", octalParaBinario(valor));
             strcat(baseEnvio, " (Octal) ");
         }
         else if(opcMenu == 4) {
-           binario = hexadecimalParaBinario(valor);
+            printf("\nValor em binário: %s", hexadecimalParaBinario(valor));
             strcat(baseEnvio, " (Hexadecimal) ");
         }
-        printf("\nValor em binário: %d", binario);
+
         char binarioConvertido[128], mensagem[248];
         sprintf(binarioConvertido, "%d", binario);
         chamaEmail(valor, binarioConvertido, baseEnvio, baseSaida);
@@ -115,8 +113,7 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
 
         strcat(baseSaida, " (Octal) ");
         if(opcMenu == 1) {
-            binario = decimalParaBinario(atoi(valor));
-            sprintf(binarioConvertido, "%d", binario);
+            sprintf(binarioConvertido, "%s", decimalParaBinario(atoi(valor)));
             printf("\nValor em octal: %s", binarioParaOctal(binarioConvertido));
             strcat(octalConvertido, binarioParaOctal(binarioConvertido));
             strcat(baseEnvio, " (Decimal) ");
@@ -127,8 +124,7 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
             strcat(baseEnvio, " (Binario) ");
         }
         else if(opcMenu == 4) {
-            binario = hexadecimalParaBinario(valor);
-            sprintf(binarioConvertido, "%d", binario);
+            sprintf(binarioConvertido, "%s", hexadecimalParaBinario(valor));
             printf("\nValor em octal: %s", binarioParaOctal(binarioConvertido));
             strcat(octalConvertido, binarioParaOctal(binarioConvertido));
             strcat(baseEnvio, " (Hexadecimal) ");
@@ -145,8 +141,8 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
 
         strcat(baseSaida, " (Hexadecimal) ");
         if(opcMenu == 1) {
-            binario = decimalParaBinario(atoi(valor));
-            sprintf(binarioConvertido, "%d", binario);
+            sprintf(binarioConvertido, "%s", decimalParaBinario(atoi(valor)));
+            printf("\nValor em binário: %s", binarioConvertido);
             printf("\nValor em Hexadecimal: %s", binarioParaHexadecimal(binarioConvertido));
             strcat(hexadecimalConvertido, binarioParaHexadecimal(binarioConvertido));
             strcat(baseEnvio, " (Decimal) ");
@@ -157,8 +153,7 @@ bool gerenciaConversao(int opcMenu, int opcConverte, char* valor) {
             strcat(baseEnvio, " (Binario) ");
         }
         else if(opcMenu == 3) {
-            binario = octalParaBinario(valor);
-            sprintf(binarioConvertido, "%d", binario);
+            sprintf(binarioConvertido, "%s", octalParaBinario(valor));
             printf("\nValor em Hexadecimal: %s", binarioParaHexadecimal(valor));
             strcat(hexadecimalConvertido, binarioParaHexadecimal(valor));
             strcat(baseEnvio, " (Octal) ");

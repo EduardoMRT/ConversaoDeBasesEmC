@@ -42,10 +42,12 @@ void recebeValor(int opcMenu){
         }else {
             printf("\n Conversão não permitida! O valor digitado não pertence a base");
             _logger(1, "O valor digitado não pertence a base");
+            getchar(); getchar();
             exit(EXIT_FAILURE);
         }
     }else {
         printf("\nVocê não pode converter para a mesma base!");
+        getchar();
         exit(EXIT_FAILURE);
     }
 
